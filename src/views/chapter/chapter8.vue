@@ -1,0 +1,75 @@
+<template>
+    <div ref="chapter8Ref" class="chapter"></div>
+</template>
+
+<script lang="ts" setup>
+    import { onMounted, ref } from 'vue'
+    import { 
+      BoxGeometry,
+      Mesh,
+      MeshBasicMaterial,
+      PerspectiveCamera,
+      Scene,
+      WebGLRenderer, 
+      AxesHelper
+    } from "three"; 
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'; //倒入轨道控制器
+
+    const chapter8Ref = ref<HTMLDivElement>();
+    //创建场景
+    const scene = new Scene();
+    //创建相机
+    const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    //设置相机位置
+    camera.position.set(0,0,10);
+    scene.add(camera);
+
+    //添加集合体
+    const cubeGeometry = new BoxGeometry(1,1,1);
+    const cubeMaterial = new MeshBasicMaterial({ color: 0xffff00 });
+    //材质
+    const cube = new Mesh(cubeGeometry, cubeMaterial);
+    //将集合体添加到场景
+    scene.add(cube);
+
+    const renderer = new WebGLRenderer();
+    renderer.setSize(window.innerWidth - 300, window.innerHeight - 100);
+    /**
+     * 添加坐标辅助器
+     * 参数：坐标轴长度
+     * 红色是x轴，绿色是y轴，蓝色是z轴
+     */
+    const axesHelper = new AxesHelper( 5 );
+    scene.add(axesHelper);
+    /**
+     * 创建轨道控制器
+     */
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    const render = () => {
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+    };
+
+    onMounted(() => {
+        chapter8Ref.value?.appendChild(renderer.domElement);
+        render();
+
+
+        window.addEventListener("resize", () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            //更新相机投影矩阵
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth - 300, window.innerHeight - 100);
+        }, false)
+    })
+
+</script>
+
+<style lang="scss">
+    .chapter {
+        width: 100%;
+        height: 80vh;
+    }
+</style>
