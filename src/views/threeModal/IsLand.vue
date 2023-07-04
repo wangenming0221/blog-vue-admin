@@ -60,7 +60,7 @@
     /**
      * 创建一个巨大的天空球体
      */
-    const texture = textureLoader.load("/public/IsLand/sky.jpg");
+    const texture = textureLoader.load("/IsLand/sky.jpg");
     const skyGeo = new SphereGeometry(1000, 60 ,60);
     const skyMaterial = new MeshBasicMaterial({
         map: texture
@@ -70,14 +70,14 @@
     scene.add(sky);
     //视频纹理
     const video = document.createElement("video") as HTMLVideoElement;
-    video.src = "/public/IsLand/sky.mp4";
+    video.src = "/IsLand/sky.mp4";
     video.loop = true; //循环播放
     video.muted = true; //静音播放
     /**
      * 载入环境纹理hdr
      */
     const hdrLoader = new RGBELoader();
-    hdrLoader.loadAsync("/public/IsLand/050.hdr").then(teture => {
+    hdrLoader.loadAsync("/IsLand/050.hdr").then(teture => {
         texture.mapping = EquirectangularReflectionMapping;
         scene.background = teture;
         scene.environment = teture;
@@ -113,9 +113,9 @@
     new Promise((resolve) => {
         const loader = new GLTFLoader();
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath("static/draco/");
+        dracoLoader.setDecoderPath("draco/");
         loader.setDRACOLoader(dracoLoader);
-        loader.load("static/island/island.glb", (gltf) => {
+        loader.load("IsLand/island.glb", (gltf) => {
             scene.add(gltf.scene);
             resolve(gltf);
         });

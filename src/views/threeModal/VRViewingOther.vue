@@ -41,7 +41,7 @@
      */
     const geometry = new SphereGeometry(5, 32, 32);
     const rgbeLoader = new RGBELoader();
-    rgbeLoader.load("/public/VRViewing_images/hdr/Living.hdr", (texture) => {
+    rgbeLoader.load("/VRViewing_images/hdr/Living.hdr", (texture) => {
         const material = new MeshBasicMaterial({ map: texture });
         const sphere = new Mesh(geometry, material);
         sphere.geometry.scale(1,1,-1);

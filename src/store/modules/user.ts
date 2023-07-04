@@ -14,7 +14,7 @@ const useUserStore = defineStore("useUserStore", {
         login(LoginForm)
           .then(({ data }) => {
             if (data) {
-             
+              resolve(data)
             } 
           })
           .catch((error) => {

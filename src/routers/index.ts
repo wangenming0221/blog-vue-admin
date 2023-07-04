@@ -1,7 +1,4 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Layout from '@/components/layout/Layout.vue'
-import Home from '@/views/home/index.vue'
-
 import { articleRouter } from "./articleRouter" //文章管理
 import { chapterRouter } from "./chapterRouter" //three.js练习demo
 import { threeModalRouter } from "./threeModalRouter" //three.js应用
@@ -16,12 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/layout',
         name: 'Layout',
-        component: () => Layout,
+        component: () => import("@/components/layout/Layout.vue"),
         redirect: '/index',
         children: [
           {
             path: "/index",
-            component: () => Home,
+            component: () => import("@/views/home/index.vue"),
             name: "index",
             meta: { title: "首页", icon: "dashboard", affix: true },
           },

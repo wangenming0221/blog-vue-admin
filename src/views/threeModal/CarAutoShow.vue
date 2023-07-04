@@ -42,7 +42,7 @@
     const detailsColor = ref<HTMLInputElement>();
     const glassColor = ref<HTMLInputElement>();
     //网格 -> 地面
-    const grid = new GridHelper( 20, 40, 0xffffff, 0xffffff );
+    const grid: any = new GridHelper( 20, 40, 0xffffff, 0xffffff );
     //场景
     const scene = new Scene();
 
@@ -117,13 +117,13 @@
         glassColor.value?.addEventListener( 'input', function () {
             glassMaterial.color.set( this.value );
         });
-        let shadow = new TextureLoader().load( '/public/CarAutoShow/ferrari_ao.png' );
+        let shadow = new TextureLoader().load( '/CarAutoShow/ferrari_ao.png' );
         let loader = new GLTFLoader();
         let dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath("static/libs/draco/gltf/");
+        dracoLoader.setDecoderPath("CarAutoShow/libs/draco/gltf/");
         loader.setDRACOLoader(dracoLoader);
-        loader.load("static/car/ferrari.glb", (gltf) => {
-            let carModel = gltf.scene.children[0];
+        loader.load("CarAutoShow/ferrari.glb", (gltf) => {
+            let carModel: any = gltf.scene.children[0];
 
             carModel.getObjectByName( 'body' ).material = bodyMaterial;
             carModel.getObjectByName( 'rim_fl' ).material = detailsMaterial;

@@ -4,6 +4,6 @@ export const articleRouter: Array<RouteRecordRaw> = [
     {
       path: "/article/list",
       name: "articleList",
-      component:() => import("@/views/article/list.vue")
+      component:() => import("@/views/Article/list.vue")
     },
 ];

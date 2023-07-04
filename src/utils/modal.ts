@@ -11,7 +11,7 @@ export function notifySuccess(message: string) {
 
 export function messageConfirm(content: string) {
   return Modal.confirm({
-    content: '系统提示',
+    content: content || '系统提示',
     icon: createVNode(ExclamationCircleOutlined),
     onOk() {
     

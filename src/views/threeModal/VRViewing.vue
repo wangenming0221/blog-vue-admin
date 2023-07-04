@@ -51,7 +51,7 @@
     var boxMaterials: MeshBasicMaterial[] = [];
     arr.map(item => {
         //纹理加载
-        let texure = new TextureLoader().load(`/public/VRViewing_images/living/${item}.jpg`);
+        let texure = new TextureLoader().load(`/VRViewing_images/living/${item}.jpg`);
         //创建材质
         let baseMaterial = new MeshBasicMaterial({map: texure});
         

@@ -58,8 +58,9 @@
     }; 
 
     const initScene = () => {
+        let rgbeLoader: any = new RGBELoader();
         scene.background = new Color(0x333333);
-        scene.environment = new RGBELoader().load();
+        scene.environment = rgbeLoader.load();
         scene.environment.mapping = EquirectangularReflectionMapping;
         scene.fog = new Fog(0x333333, 10, 15);
         const axes = new AxesHelper(20);

@@ -45,7 +45,7 @@
     const glassColor = ref<HTMLInputElement>();
     //场景
     let camera: PerspectiveCamera, scene: Scene, renderer: WebGLRenderer;
-	let grid: GridHelper;
+	let grid: any;
 	let controls;
     const wheels: any = [];
 
@@ -103,7 +103,7 @@
             color: 0xffffff, metalness: 0.25, roughness: 0, transmission: 1.0
         });
 
-        bodyColor.value?.addEventListener('input', (event) => {
+        bodyColor.value?.addEventListener('input', (event: any) => {
             bodyMaterial.color.set(event?.target?._value);
         });
         let shadow = new TextureLoader().load( '/public/CarAutoShow/ferrari_ao.png' );
@@ -112,7 +112,7 @@
         dracoLoader.setDecoderPath("static/libs/draco/gltf/");
         loader.setDRACOLoader(dracoLoader);
         loader.load("static/car/ferrari.glb", (gltf) => {
-            let carModel = gltf.scene.children[0];
+            let carModel: any = gltf.scene.children[0];
 
             carModel.getObjectByName( 'body' ).material = bodyMaterial;
             carModel.getObjectByName( 'rim_fl' ).material = detailsMaterial;
